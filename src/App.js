@@ -1,20 +1,17 @@
 import './App.css';
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-//import {globalStyles } from "./constants";
 import appStyle from "./AppStyles.module.css";
+//import {globalStyles } from "./constants";
 import { Homepage} from "./Homepage";
 import { Apple } from "./Apple";
 import {Notfound} from "./Notfound";
 import { ThemeProvider } from '@emotion/react';
 import {theme } from "./styles";
-//import Logo from "./logo.svg"; before moving logo.svg to images folder
-//import Logo from "./images/logo.svg";
-//import SiteLogo from "../public/logo192.png";
 const App = () => (
 <>
 <ThemeProvider theme={theme}>
  {/* <img src = {Logo} alt = "App logo"/> */}
-<img src = {"http://localhost:3000/logo192.png"} alt = "App logo"/>
+{/* <img src = {"http://localhost:3000/logo192.png"} alt = "App logo"/> */}
 <BrowserRouter>
   <div  className = {appStyle.navbarStyle}
   // style =
@@ -32,6 +29,5 @@ const App = () => (
 </BrowserRouter>
 </ThemeProvider>
 </>
-
 );
 export default App;

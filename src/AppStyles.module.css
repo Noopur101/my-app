@@ -40,4 +40,6 @@
     display : flex;
     padding : 5px;
     column-gap :10px;
+    background-color: #61dafb;
+    
   }

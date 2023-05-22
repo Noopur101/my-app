@@ -40,4 +40,13 @@
   display : flex;
   padding : 5px;
   column-gap :10px;
+ 
+  
 }
+/* img{
+  display : block;
+  margin-left :auto;
+  margin-right: auto;
+  width: 10%;
+  background-color: grey;
+} */
