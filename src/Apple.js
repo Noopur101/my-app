@@ -6,35 +6,74 @@ import { Avatar ,Popover } from "@mui/material";
 import LogoutIconLinedIcon from '@mui/icons-material/Logout';
 import { Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import {  toast  } from 'react-toastify' ;
+
 
 export const Apple = () => {
     // const [name , setName] = useState();
     // const [email , setEmail] = useState();
      const [open, setOpen] = useState(false);
      const [anchorEl, setAnchorEl] = useState(null);
-    const Navigate = useNavigate();
+     const Navigate = useNavigate();
+     const [user, setUser] = useState([]);
     useEffect(()=> {
-        // console.log("it is new name : ",name,email);
-        // return()=> {
-        //     console.log("it the old name:  ",name,email);
-        // }
+        axios.get("https://jsonplaceholder.typicode.com/posts").then((res)=>{
+            console.log("user details : ",res.data);
+            setUser(res.data);
+        });
     }, []);
     const validationSchema= Yup.object().shape(
     {
-        name : Yup.string().min(3,"Please ,make sure to enter atleast 3 letters") ,
-        email: Yup.string().email("Please enter a valid email")
+        name : Yup.string().min(3,"Please ,make sure to enter atleast 3 letters").required("Please enter name"),
+        email: Yup.string().email("Please enter a valid email").required("Please enter email")
     });
     const initialValues = {
         name : "",
         email : "",
 
     };
-    const onFormSubmit = (values) =>{
+    const onFormSubmit = async (values) =>{
         console.log("on form submission ",values);
         alert("form submitted ");
-        // Navigate("/");
-       //alert("The button is clicked!");  //we can add javascript in this manner
+       const requestData ={
+        userName :values.name,
+        userEmail : values.email,
+
+       } ;
+    
+       const res = await axios.post("https://jsonplaceholder.typicode.com/posts", requestData);
+        if(res.status === 201 ){
+            console.log(res.data.id);
+            toast.success("api call is completed successfully", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }
+        axios.delete("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
+            if(res.status === 200 ){
+                console.log(res.data.id);
+                toast.success("data deleted successfully ", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+            } 
+        });
     };
+    
+    
     const onHomePageButtonClick = () =>{
         Navigate("/");}
     const handleClick = (event) => {
@@ -93,7 +132,7 @@ export const Apple = () => {
                    placeholder = "Name" 
                    onChange={handleChange}
                    onBlur={handleBlur}
-                   required
+                   
                 /></div>
                 {touched.name && errors.name && <span style={{
                     padding:5,
@@ -114,7 +153,7 @@ export const Apple = () => {
                    placeholder= "email" 
                    onChange={handleChange}
                    onBlur={handleBlur}
-                   required
+                   
                 />
                 {console.log("email validation: ",errors)}
                 {touched.email  && errors.email && <span style={{
@@ -131,6 +170,14 @@ export const Apple = () => {
             )}
             
             </Formik>
+         </div>
+         <div>
+            {user.map((item) => (
+                <div key ={item.id}>
+                    <h3>{item.title}</h3>
+                    <span>{item.body}</span>
+                </div>
+            ))}
          </div>
          <Popover 
         open = {open}
@@ -156,4 +203,3 @@ export const Apple = () => {
      </div> 
 );
 };
- 

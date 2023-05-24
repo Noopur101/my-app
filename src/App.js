@@ -7,11 +7,16 @@ import { Apple } from "./Apple";
 import {Notfound} from "./Notfound";
 import { ThemeProvider } from '@emotion/react';
 import {theme } from "./styles";
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const App = () => (
 <>
 <ThemeProvider theme={theme}>
+  <ToastContainer/>
+
  {/* <img src = {Logo} alt = "App logo"/> */}
 {/* <img src = {"http://localhost:3000/logo192.png"} alt = "App logo"/> */}
+
 <BrowserRouter>
   <div  className = {appStyle.navbarStyle}
   // style =
