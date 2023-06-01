@@ -1,0 +1,53 @@
+.center{
+    text-align: center;
+    font-size: 18px;
+    color :#414141;
+}
+.mainHeader{
+    display :flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginheader{
+    font-size : 32px;
+    color : #414141;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.line{
+    width : 25%;
+    margin-left: auto;
+    margin-right: auto;
+    color : red;
+}
+.paraStyle{
+    font-size: 15px;
+    font-style: 'roboto-light';
+    color : #838383;
+}
+.label{
+    font-size : 15px;
+    color : #414141;
+    margin-bottom: 10px;
+}
+.side-by-side{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.customer{
+    margin-top : 17px;
+}
+.loginpart{
+    margin-top : 23px;
+}
+.homeLink{
+    text-decoration: none;
+}   
+.homeLink:visited{
+    color:black
+}
